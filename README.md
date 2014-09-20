@@ -5,7 +5,7 @@ DokuWiki docker container
 To run image:
 -------------
 
-docker run -d -p 80:80 --name my_wiki mprasil/dokuwiki 
+	docker run -d -p 80:80 --name my_wiki mprasil/dokuwiki 
 
 You can now visit the install page to configure your new DokuWiki wiki.
 
@@ -24,4 +24,4 @@ Set to proprietary lighttpd header (for lighttpd < 1.5)
 Build your own
 --------------
 
-docker build -t my_dokuwiki .
+	docker build -t my_dokuwiki .
