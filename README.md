@@ -31,6 +31,12 @@ Now you can remove old container
 
 	docker run -d -p 80:80 --name my_wiki --volumes-from my_wiki_data mprasil/dokuwiki 
 
+afterwards you can remove data container if you want
+
+	docker rm my_wiki_data
+
+(or keep it for next update, takes no space anyway..)
+
 Optimizing your wiki
 --------------------
 
