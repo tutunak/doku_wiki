@@ -40,7 +40,7 @@ RUN lighty-enable-mod dokuwiki fastcgi accesslog
 RUN mkdir /var/run/lighttpd && chown www-data.www-data /var/run/lighttpd
 
 EXPOSE 80
-VOLUME ["/dokuwiki/data/", "/var/log/"]
+VOLUME ["/dokuwiki/data/","/dokuwiki/lib/plugins/","/dokuwiki/conf/","/dokuwiki/lib/tpl/","/var/log/"]
 
 ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
 
