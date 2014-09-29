@@ -12,7 +12,7 @@ MAINTAINER Miroslav Prasil <miroslav@prasil.info>
 ENV DOKUWIKI_VERSION 2014-05-05a
 ENV DOKUWIKI_CSUM fb44f206d1550921c640757599e90bb9
 
-ENV LAST_REFRESHED 26. September 2014
+ENV LAST_REFRESHED 29. September 2014
 # Update & install packages
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install wget \
