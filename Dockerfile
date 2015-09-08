@@ -9,10 +9,10 @@ FROM ubuntu:14.04
 MAINTAINER Miroslav Prasil <miroslav@prasil.info>
 
 # Set the version you want of Twiki
-ENV DOKUWIKI_VERSION 2014-09-29d
-ENV DOKUWIKI_CSUM 2bf2d6c242c00e9c97f0647e71583375
+ENV DOKUWIKI_VERSION 2015-08-10a
+ENV DOKUWIKI_CSUM a4b8ae00ce94e42d4ef52dd8f4ad30fe
 
-ENV LAST_REFRESHED 7. April 2015
+ENV LAST_REFRESHED 6. September 2015
 # Update & install packages
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install wget \
