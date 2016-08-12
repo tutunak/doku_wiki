@@ -9,10 +9,10 @@ FROM ubuntu:14.04
 MAINTAINER Miroslav Prasil <miroslav@prasil.info>
 
 # Set the version you want of Twiki
-ENV DOKUWIKI_VERSION 2015-08-10a
-ENV DOKUWIKI_CSUM a4b8ae00ce94e42d4ef52dd8f4ad30fe
+ENV DOKUWIKI_VERSION 2016-06-26a
+ENV DOKUWIKI_CSUM 9b9ad79421a1bdad9c133e859140f3f2
 
-ENV LAST_REFRESHED 6. September 2015
+ENV LAST_REFRESHED 12. August 2016
 
 # Update & install packages & cleanup afterwards
 RUN DEBIAN_FRONTEND=noninteractive \
