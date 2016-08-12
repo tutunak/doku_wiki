@@ -12,6 +12,11 @@ You can now visit the install page to configure your new DokuWiki wiki.
 For example, if you are running container locally, you can acces the page 
 in browser by going to http://127.0.0.1/install.php
 
+### Run a specific version ###
+
+When running the container you can specify version to download from docker registry by using couple provided tags like *stable* which contains current stable release (this is generaly the same as *latest*) or *oldstable*. You can also use specific version like *2016-06-26a*.
+
+
 To upate the image:
 -------------------
 
