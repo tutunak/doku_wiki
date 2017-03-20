@@ -18,7 +18,7 @@ ENV LAST_REFRESHED 12. August 2016
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get -y upgrade && \
-    apt-get -y install wget lighttpd php5-cgi php5-gd php5-ldap && \
+    apt-get -y install wget lighttpd php5-cgi php5-gd php5-ldap php5-curl && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
