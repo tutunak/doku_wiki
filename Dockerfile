@@ -5,20 +5,20 @@
 # TO_RUN:         docker run -d -p 80:80 --name my_wiki mprasil/dokuwiki
 
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Miroslav Prasil <miroslav@prasil.info>
 
 # Set the version you want of Twiki
 ARG DOKUWIKI_VERSION=2017-02-19e
 ARG DOKUWIKI_CSUM=09bf175f28d6e7ff2c2e3be60be8c65f
 
-ENV LAST_REFRESHED 12. August 2016
+ENV LAST_REFRESHED 25. October 2017
 
 # Update & install packages & cleanup afterwards
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get -y upgrade && \
-    apt-get -y install wget lighttpd php5-cgi php5-gd php5-ldap php5-curl && \
+    apt-get -y install wget lighttpd php-cgi php-gd php-ldap php-curl php-mbstring && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
