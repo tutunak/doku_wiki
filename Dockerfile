@@ -9,8 +9,8 @@ FROM ubuntu:14.04
 MAINTAINER Miroslav Prasil <miroslav@prasil.info>
 
 # Set the version you want of Twiki
-ENV DOKUWIKI_VERSION 2017-02-19b
-ENV DOKUWIKI_CSUM ea11e4046319710a2bc6fdf58b5cda86
+ARG DOKUWIKI_VERSION=2017-02-19e
+ARG DOKUWIKI_CSUM=09bf175f28d6e7ff2c2e3be60be8c65f
 
 ENV LAST_REFRESHED 12. August 2016
 
