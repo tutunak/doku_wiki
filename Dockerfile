@@ -33,8 +33,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN wget -q -O /dokuwiki.tgz "http://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz" && \
     if [ "$DOKUWIKI_CSUM" != "$(md5sum /dokuwiki.tgz | awk '{print($1)}')" ];then echo "Wrong md5sum of downloaded file!"; exit 1; fi && \
     mkdir /dokuwiki && \
-    tar -zxf dokuwiki.tgz -C /dokuwiki --strip-components 1 && \
-    rm dokuwiki.tgz
+    tar -zxf dokuwiki.tgz -C /dokuwiki --strip-components 1
 
 # Set up ownership
 RUN chown -R www-data:www-data /dokuwiki
@@ -44,8 +43,11 @@ ADD dokuwiki.conf /etc/lighttpd/conf-available/20-dokuwiki.conf
 RUN lighty-enable-mod dokuwiki fastcgi accesslog
 RUN mkdir /var/run/lighttpd && chown www-data.www-data /var/run/lighttpd
 
+COPY docker-startup.sh /startup.sh
+
 EXPOSE 80
 VOLUME ["/dokuwiki/data/","/dokuwiki/lib/plugins/","/dokuwiki/conf/","/dokuwiki/lib/tpl/","/var/log/"]
 
-ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+ENTRYPOINT ["/startup.sh"]
+CMD ["run"]
 
