@@ -59,6 +59,16 @@ afterwards you can remove data container if you want
 
 Just stop the old container and run the new one with the same `-v` mapping. Since the data is on your file system, you do not need to do anything special to preserve it between containers.
 
+#### Handling changes in bundled files inside volumes ####
+
+If you mount a volume that has previously been used with a newer version of DokuWiki than that installed in the current contaier, the newer files will _not_ be overwritten by those bundled with the current (older) version of DokuWiki. If you want to force a downgrade (at your own risk!), run the container with the `downgrade` command:
+
+    docker run ... mprasil/dokuwiki donwgrade
+
+Additionally, if you make any changes to the files bundled with DokuWiki that are located in your volumes, these can be restored to the original version using the `overwrite` command:
+
+    docker run ... mprasil/dokuwiki overwrite
+
 Optimizing your wiki
 --------------------
 

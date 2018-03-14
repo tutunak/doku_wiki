@@ -10,18 +10,14 @@ set -o pipefail
 # or fully populate these folders if this is the first run.
 
 dokudir=/dokuwiki
+tmpdir=/tmp/dokuwiki
 verfile=.last-version
+containerver="$(date -f <(echo "$DOKUWIKI_VERSION" | tr -d '[:alpha:]') +%s)"
 
 if [ ! -d "$dokudir" ]; then
     echo "DokuWiki does not appear to be installed correctly at: $dokudir." >&2
     exit 1
 fi
-
-# Unpack a temporary copy
-tmpdir=/tmp/dokuwiki
-mkdir "$tmpdir"
-tar -zxf /dokuwiki.tgz -C "$tmpdir" --strip-components 1
-containerver="$(date -f <(awk '{print $1}' "$tmpdir/VERSION" | tr -d '[:alpha:]') +%s)"
 
 # Check for downgrade/overwrite parameters
 if [ "$1" = 'downgrade' ]; then downgrade=1; else downgrade=0; fi
@@ -40,7 +36,13 @@ if [ "$1" = 'run' ] || [ "$1" = 'downgrade' ] || [ "$1" = 'overwrite' ]; then
             # Do nothing for equal versions
             continue
         elif [ "$volumever" -lt "$containerver" ] || [ "$downgrade" -eq 1 ] || [ "$overwrite" -eq 1 ]; then
-            # Update if the container version is newer than the volume version
+            # First, unpack a temporary copy of the current DokuWiki version
+            if [ ! -d "$tmpdir" ]; then
+                mkdir "$tmpdir"
+                tar -zxf /dokuwiki.tgz -C "$tmpdir" --strip-components 1
+            fi
+
+            # Then, update if the container version is newer than the volume version
             # Or if overridden using `downgrade`
             echo "Migrating $d..."
             cp -r "$tmpdir/$d/"* "$dokudir/$d/"
@@ -50,17 +52,20 @@ if [ "$1" = 'run' ] || [ "$1" = 'downgrade' ] || [ "$1" = 'overwrite' ]; then
             cat >&2 <<EOM
 This volume has perviously been used with a newer version of DokuWiki.
 If you want to force a downgrade (at your own risk!), run the \`downgrade\` command:
-    docker run ... andreipoe/dokuwiki donwgrade 
+    docker run ... mprasil/dokuwiki donwgrade
 EOM
         exit 2
         fi
     done
 
+    # Clean up any temporary files
+    rm -rf "$tmpdir"
+
     # Ensure persmissions are set correctly
     chown -R www-data:www-data "$dokudir"
 
     # Run the web server
-    /usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf
+    exec /usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf
 else
     # Handle custom commands otherwise
     exec "$@"
