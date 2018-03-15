@@ -61,6 +61,8 @@ Just stop the old container and run the new one with the same `-v` mapping. Sinc
 
 #### Handling changes in bundled files inside volumes ####
 
+**Note:** The functionality bellow is currently only supported in `latest`, `stable-bind` and `2017-02-19e-bind` tags. This is to preserve original functionality in old images. Future releases will all support the new update system. 
+
 If you mount a volume that has previously been used with a newer version of DokuWiki than that installed in the current contaier, the newer files will _not_ be overwritten by those bundled with the current (older) version of DokuWiki. If you want to force a downgrade (at your own risk!), run the container with the `downgrade` command:
 
     docker run ... mprasil/dokuwiki donwgrade
