@@ -21,7 +21,8 @@ The run command above will store your data in internal Docker volumes. If you pr
         -v /data/docker/dokuwiki/conf:/dokuwiki/conf \
         -v /data/docker/dokuwiki/lib/plugins:/dokuwiki/lib/plugins \
         -v /data/docker/dokuwiki/lib/tpl:/dokuwiki/lib/tpl \
-        -v /data/docker/dokuwiki/logs:/var/log
+        -v /data/docker/dokuwiki/logs:/var/log \
+        mprasil/dokuwiki
 
 ### Run a specific version ###
 
