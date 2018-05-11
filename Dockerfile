@@ -9,8 +9,8 @@ FROM ubuntu:16.04
 MAINTAINER Miroslav Prasil <miroslav@prasil.info>
 
 # Set the version you want of Twiki
-ENV DOKUWIKI_VERSION=2018-04-22
-ARG DOKUWIKI_CSUM=cec26670452f0122807d4f812432df4d
+ENV DOKUWIKI_VERSION=2018-04-22a
+ARG DOKUWIKI_CSUM=18765a29508f96f9882349a304bffc03
 
 # Update & install packages & cleanup afterwards
 RUN DEBIAN_FRONTEND=noninteractive \
