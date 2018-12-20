@@ -64,6 +64,9 @@ EOM
     # Ensure persmissions are set correctly
     chown -R www-data:www-data "$dokudir"
 
+    # Make sure log directory is present
+    mkdir -p /var/log/lighttpd && chown www-data:www-data /var/log/lighttpd
+
     # Run the web server
     exec /usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf
 else
