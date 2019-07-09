@@ -11,6 +11,7 @@ MAINTAINER Miroslav Prasil <miroslav@prasil.info>
 # Set the version you want of Twiki
 ENV DOKUWIKI_VERSION=2018-04-22b
 ARG DOKUWIKI_CSUM=605944ec47cd5f822456c54c124df255
+ARG DOKUWIKI_DEBIAN_PACKAGES=""
 
 # Update & install packages & cleanup afterwards
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -24,7 +25,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
         php-ldap \
         php-curl \
         php-xml \
-        php-mbstring && \
+        php-mbstring \
+        ${DOKUWIKI_DEBIAN_PACKAGES} && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
