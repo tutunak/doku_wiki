@@ -13,6 +13,10 @@ ENV DOKUWIKI_VERSION=2018-04-22b
 ARG DOKUWIKI_CSUM=605944ec47cd5f822456c54c124df255
 ARG DOKUWIKI_DEBIAN_PACKAGES=""
 
+# Modificate user uid
+RUN groupmod -g 1000 www-data
+RUN usermod -u 1000 www-data
+
 # Update & install packages & cleanup afterwards
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
